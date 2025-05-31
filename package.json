@@ -1,0 +1,35 @@
+{
+  "name": "prerendererest",
+  "version": "1.0.0",
+  "description": "A CLI-based prerenderer for static site generation",
+  "main": "index.js",
+  "bin": {
+    "prerendererest": "./index.js"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "prerender",
+    "cli",
+    "static-site-generator",
+    "ssr"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^11.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/prerendererest.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/prerendererest/issues"
+  },
+  "homepage": "https://github.com/yourusername/prerendererest#readme"
+}
