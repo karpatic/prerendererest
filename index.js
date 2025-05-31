@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const puppeteer = require("puppeteer");
 const express = require("express");
 const serveStatic = require("serve-static");
@@ -297,6 +299,41 @@ const run = async (userOptions, { fs } = { fs: nativeFs }) => {
 if (require.main === module) {
   const args = process.argv.slice(2);
   const userOptions = {};
+  
+  // Show help if requested
+  if (args.includes('--help') || args.includes('-h')) {
+    console.log(`
+Usage: prerendererest [options]
+
+Options:
+  --source <path>              Source directory (default: ./docs)
+  --destination <path>         Destination directory (default: same as source)
+  --include <pages>            Comma-separated list of pages to include (default: /index.html)
+  --headless                   Run browser in headless mode
+  --crawl                      Enable automatic crawling (default: true)
+  --no-crawl                   Disable automatic crawling
+  --port <number>              Port for local server (default: 45678)
+  --concurrency <number>       Number of concurrent processes (default: 1)
+  --userAgent <string>         Custom user agent (default: Prerendererest)
+  --viewport <json>            Viewport size as JSON object (default: {"width":480,"height":850})
+  --skipThirdPartyRequests     Block external requests during rendering
+  --skipExistingCheck          Skip the 200.html existence check
+  --minifyHtml <json>          HTML minification options as JSON
+  --removeScriptTags           Remove script tags from HTML
+  --removeStyleTags            Remove style tags from HTML
+  --asyncScriptTags            Add async attribute to script tags
+  --inlineCss                  Inline CSS styles
+  --preloadImages              Add preload hints for images
+  --puppeteerArgs <args>       Comma-separated Puppeteer arguments
+  -h, --help                   Show this help message
+
+Examples:
+  prerendererest --source ./build --headless
+  prerendererest --include "/index.html,/about.html" --source ./build --headless
+  prerendererest --source ./build --destination ./dist --crawl --concurrency 4
+`);
+    process.exit(0);
+  }
   
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--include' && args[i + 1]) {
