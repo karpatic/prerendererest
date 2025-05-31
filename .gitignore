@@ -14,3 +14,10 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Test artifacts
+test/test-data*/
+test-results/
+test-output/
+.jest/
+*.test.log

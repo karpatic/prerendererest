@@ -1,0 +1,14 @@
+# Test Coverage Reports
+coverage/
+*.lcov
+
+# Test Output
+test-results/
+test-output/
+
+# Jest Cache
+.jest/
+
+# Test temporary files
+test/test-data/
+*.test.log

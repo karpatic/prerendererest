@@ -7,8 +7,18 @@
     "prerendererest": "./index.js"
   },
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:ci": "jest --ci --coverage --watchAll=false",
+    "test:integration": "jest --testPathPattern=test/index.test.js",
+    "test:unit": "jest --testPathPattern=test/unit.test.js",
+    "test:advanced": "jest --testPathPattern=test/advanced.test.js",
+    "test:performance": "jest --testPathPattern=test/performance.test.js",
+    "test:fast": "jest --testPathPattern='test/(unit|advanced).test.js'",
+    "test:slow": "jest --testPathPattern='test/(index|performance).test.js'",
+    "test:verbose": "jest --verbose",
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
   },
   "keywords": [
     "prerender",
@@ -21,15 +31,24 @@
   "dependencies": {
     "commander": "^11.0.0"
   },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "puppeteer": "^21.0.0",
+    "express": "^4.18.2",
+    "serve-static": "^1.15.0",
+    "express-history-api-fallback": "^2.2.1",
+    "mkdirp": "^3.0.1",
+    "html-minifier": "^4.0.0"
+  },
   "engines": {
     "node": ">=14.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/prerendererest.git"
+    "url": "git+https://github.com/karpatic/prerendererest.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/prerendererest/issues"
+    "url": "https://github.com/karpatic/prerendererest/issues"
   },
-  "homepage": "https://github.com/yourusername/prerendererest#readme"
+  "homepage": "https://github.com/karpatic/prerendererest#readme"
 }
