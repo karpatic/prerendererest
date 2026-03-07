@@ -46,7 +46,7 @@ EOF
 echo "Publishing ${SCOPED_NAME} to GitHub Packages..."
 (
   cd "$TMP_DIR"
-  npm publish --access public
+  npm publish --access public --ignore-scripts
 )
 
 echo "Published ${SCOPED_NAME}"
