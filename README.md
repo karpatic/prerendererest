@@ -8,6 +8,7 @@ A fast and flexible pre-rendering tool for static site generation using Puppetee
 - **npm:** https://www.npmjs.com/package/prerendererest
 - **unpkg (latest):** https://unpkg.com/prerendererest/
 - **jsDelivr (latest):** https://cdn.jsdelivr.net/npm/prerendererest/
+- **GitHub Pages demo (script + before/after):** https://karpatic.github.io/prerendererest/
 - **Version-pinned examples (1.0.1):**
   - https://unpkg.com/prerendererest@1.0.1/index.js
   - https://cdn.jsdelivr.net/npm/prerendererest@1.0.1/index.js
