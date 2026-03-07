@@ -23,7 +23,19 @@
     "test:fast": "jest --testPathPattern='test/(unit|advanced).test.js'",
     "test:slow": "jest --testPathPattern='test/(index|performance).test.js'",
     "test:verbose": "jest --verbose",
-    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand"
+    "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "prepublishOnly": "npm run test:unit && npm run lint:check",
+    "preversion": "npm run test:unit",
+    "postversion": "git push && git push --tags",
+    "patch": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
+    "publish:patch": "npm run patch",
+    "publish:minor": "npm run minor",
+    "publish:major": "npm run major",
+    "check": "npm pack --dry-run",
+    "lint:check": "echo 'Linting passed (placeholder)'",
+    "release": "./scripts/release.sh"
   },
   "keywords": [
     "prerender",

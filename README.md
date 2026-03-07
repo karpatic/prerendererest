@@ -2,6 +2,31 @@
 
 A fast and flexible pre-rendering tool for static site generation using Puppeteer. Pre-render your React, Vue, or any SPA into static HTML files for better SEO and faster initial page loads. Basically a stripped down version of React-Snap but with added support for the things I wanted to see. Easy to edit with AI since it's 500 lines of rather straightforward code. Feel free to grab a copy for your own use.
 
+
+## Available on npm + CDNs
+
+- **npm:** https://www.npmjs.com/package/prerendererest
+- **unpkg (latest):** https://unpkg.com/prerendererest/
+- **jsDelivr (latest):** https://cdn.jsdelivr.net/npm/prerendererest/
+- **Version-pinned examples (1.0.1):**
+  - https://unpkg.com/prerendererest@1.0.1/index.js
+  - https://cdn.jsdelivr.net/npm/prerendererest@1.0.1/index.js
+
+## GitHub automation
+
+This repo includes GitHub Actions for:
+
+- **CI** on pushes/PRs (`.github/workflows/ci.yml`)
+- **npm publish** on GitHub Release publish (`.github/workflows/npm-publish.yml`)
+- **GitHub Pages deploy** for `index.html` (`.github/workflows/pages.yml`)
+- **Dependabot** weekly updates for npm + Actions (`.github/dependabot.yml`)
+
+### Required repository settings
+
+1. Add repository secret: `NPM_TOKEN` (npm automation token with publish access).
+2. In **Settings → Pages**, set **Build and deployment** to **GitHub Actions**.
+3. Publish a GitHub Release (for a new version tag) to trigger npm publishing.
+
 ## Features
 
 - 🚀 Fast pre-rendering using Puppeteer
