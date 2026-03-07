@@ -25,7 +25,7 @@
     "test:verbose": "jest --verbose",
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "prepublishOnly": "npm run test:unit && npm run lint:check",
-    "preversion": "npm run test:unit && npm run check",
+    "preversion": "npm run test:unit",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major",
@@ -34,7 +34,8 @@
     "release": "./scripts/release.sh",
     "publish:npm": "npm publish --access public",
     "publish:github": "./scripts/publish-github-package.sh",
-    "publish:all": "npm run publish:npm && npm run publish:github"
+    "publish:all": "npm run publish:npm && npm run publish:github",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "prerender",

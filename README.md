@@ -18,28 +18,22 @@ A fast and flexible pre-rendering tool for static site generation using Puppetee
   - https://unpkg.com/prerendererest@1.0.1/index.js
   - https://cdn.jsdelivr.net/npm/prerendererest@1.0.1/index.js
 
-## Local-first publishing (no GitHub Actions required)
+## GitHub automation
 
-Everything can be done locally before pushing:
+This repo includes GitHub Actions for:
 
-```bash
-# 1) verify locally
-npm run test:unit
-npm run check
+- **CI** on pushes/PRs (`.github/workflows/ci.yml`)
+- **Dual publish** on GitHub Release publish (`.github/workflows/npm-publish.yml`)
+  - Publishes `prerendererest` to npm (trusted publishing)
+  - Publishes `@karpatic/prerendererest` mirror to GitHub Packages
+- **GitHub Pages deploy** for `index.html` (`.github/workflows/pages.yml`)
+- **Dependabot** weekly updates for npm + Actions (`.github/dependabot.yml`)
 
-# 2) publish to npm
-npm publish --access public
+### Required repository settings
 
-# 3) publish scoped mirror to GitHub Packages
-GITHUB_NPM_TOKEN=ghp_xxx npm run publish:github
-
-# 4) push commit/tag only after both publishes succeed
-git push && git push --tags
-```
-
-> For GitHub Packages publishing, the local script publishes a scoped mirror package as `@karpatic/prerendererest`.
->
-> For GitHub Pages with no workflows, set **Settings → Pages → Source** to **Deploy from a branch**, then pick `main` and `/(root)`.
+1. In npm package settings, configure **Trusted Publisher** for workflow file `npm-publish.yml`.
+2. In **Settings → Pages**, set **Build and deployment** to **GitHub Actions**.
+3. Publish a GitHub Release for a new version tag to trigger dual publishing.
 
 ## Features
 

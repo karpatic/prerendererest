@@ -15,14 +15,8 @@ npm run check
 echo "Bumping version: $BUMP"
 npm version "$BUMP"
 
-echo "Publishing to npm..."
-npm publish --access public
-
-echo "Publishing scoped mirror to GitHub Packages..."
-npm run publish:github
-
-echo "Pushing commits + tags..."
+echo "Pushing commit + tag..."
 git push
 git push --tags
 
-echo "Done. Local-first release complete."
+echo "Done. Publish a GitHub Release for the new tag to trigger dual package publish."
