@@ -1,6 +1,6 @@
 {
   "name": "prerendererest",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI-based prerenderer for static site generation",
   "main": "index.js",
   "files": [
@@ -26,16 +26,16 @@
     "test:debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
     "prepublishOnly": "npm run test:unit && npm run lint:check",
     "preversion": "npm run test:unit",
-    "postversion": "git push && git push --tags",
     "patch": "npm version patch",
     "minor": "npm version minor",
     "major": "npm version major",
-    "publish:patch": "npm run patch",
-    "publish:minor": "npm run minor",
-    "publish:major": "npm run major",
     "check": "npm pack --dry-run",
     "lint:check": "echo 'Linting passed (placeholder)'",
-    "release": "./scripts/release.sh"
+    "release": "./scripts/release.sh",
+    "publish:npm": "npm publish --access public",
+    "publish:github": "./scripts/publish-github-package.sh",
+    "publish:all": "npm run publish:npm && npm run publish:github",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "prerender",
@@ -52,12 +52,12 @@
   "author": "Carlos Karpatic",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^21.0.0",
-    "express": "^4.18.2",
-    "serve-static": "^1.15.0",
+    "express": "^5.2.1",
     "express-history-api-fallback": "^2.2.1",
+    "html-minifier": "^4.0.0",
     "mkdirp": "^3.0.1",
-    "html-minifier": "^4.0.0"
+    "puppeteer": "^24.38.0",
+    "serve-static": "^2.2.1"
   },
   "devDependencies": {
     "jest": "^30.2.0"

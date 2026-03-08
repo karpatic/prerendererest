@@ -1,13 +1,19 @@
 # Prerendererest
 
+[![npm version](https://img.shields.io/npm/v/prerendererest.svg)](https://www.npmjs.com/package/prerendererest)
+[![npm downloads](https://img.shields.io/npm/dm/prerendererest.svg)](https://www.npmjs.com/package/prerendererest)
+[![GitHub Pages Demo](https://img.shields.io/badge/demo-GitHub%20Pages-2ea44f)](https://karpatic.github.io/prerendererest/)
+
 A fast and flexible pre-rendering tool for static site generation using Puppeteer. Pre-render your React, Vue, or any SPA into static HTML files for better SEO and faster initial page loads. Basically a stripped down version of React-Snap but with added support for the things I wanted to see. Easy to edit with AI since it's 500 lines of rather straightforward code. Feel free to grab a copy for your own use.
 
-
-## Available on npm + CDNs
+## Distribution
 
 - **npm:** https://www.npmjs.com/package/prerendererest
+- **GitHub Packages mirror:** `@karpatic/prerendererest`
+- **GitHub Packages listing:** https://github.com/users/karpatic/packages?repo_name=prerendererest
 - **unpkg (latest):** https://unpkg.com/prerendererest/
 - **jsDelivr (latest):** https://cdn.jsdelivr.net/npm/prerendererest/
+- **GitHub Pages demo (script + before/after):** https://karpatic.github.io/prerendererest/
 - **Version-pinned examples (1.0.1):**
   - https://unpkg.com/prerendererest@1.0.1/index.js
   - https://cdn.jsdelivr.net/npm/prerendererest@1.0.1/index.js
@@ -17,15 +23,17 @@ A fast and flexible pre-rendering tool for static site generation using Puppetee
 This repo includes GitHub Actions for:
 
 - **CI** on pushes/PRs (`.github/workflows/ci.yml`)
-- **npm publish** on GitHub Release publish (`.github/workflows/npm-publish.yml`)
+- **Dual publish** on GitHub Release publish (`.github/workflows/npm-publish.yml`)
+  - Publishes `prerendererest` to npm (trusted publishing)
+  - Publishes `@karpatic/prerendererest` mirror to GitHub Packages
 - **GitHub Pages deploy** for `index.html` (`.github/workflows/pages.yml`)
 - **Dependabot** weekly updates for npm + Actions (`.github/dependabot.yml`)
 
 ### Required repository settings
 
-1. Add repository secret: `NPM_TOKEN` (npm automation token with publish access).
+1. In npm package settings, configure **Trusted Publisher** for workflow file `npm-publish.yml`.
 2. In **Settings → Pages**, set **Build and deployment** to **GitHub Actions**.
-3. Publish a GitHub Release (for a new version tag) to trigger npm publishing.
+3. Publish a GitHub Release for a new version tag to trigger dual publishing.
 
 ## Features
 
