@@ -3,188 +3,324 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prerendererest</title>
+    <title>Prerendererest · SEO-ready static HTML for SPAs</title>
     <meta
       name="description"
-      content="Prerendererest - CLI pre-rendering tool for static site generation"
+      content="Prerendererest turns SPA routes into crawlable static HTML for better SEO, faster first paint, and cleaner social previews."
     />
     <style>
       :root {
-        --bg: #0f172a;
-        --card: #111827;
+        --bg: #070b17;
+        --bg-soft: #101935;
+        --card: rgba(17, 24, 39, 0.72);
+        --line: rgba(148, 163, 184, 0.25);
         --text: #e5e7eb;
         --muted: #9ca3af;
-        --accent: #38bdf8;
+        --accent: #4f9cf9;
         --accent2: #22c55e;
-        --line: #334155;
+        --accent3: #a78bfa;
       }
+
       * {
         box-sizing: border-box;
       }
+
       body {
         margin: 0;
-        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-        background: radial-gradient(circle at top, #1e293b, var(--bg));
         color: var(--text);
-        min-height: 100vh;
-        display: grid;
-        place-items: start center;
-        padding: 24px;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background:
+          radial-gradient(1000px 500px at 10% -20%, #1e3a8a55, transparent),
+          radial-gradient(900px 500px at 100% 0%, #7c3aed45, transparent),
+          linear-gradient(180deg, #0b1223 0%, var(--bg) 45%, #05070e 100%);
       }
+
+      .container {
+        width: min(1080px, 92%);
+        margin: 0 auto;
+        padding: 36px 0 52px;
+      }
+
+      .hero {
+        border: 1px solid var(--line);
+        background: linear-gradient(180deg, rgba(17, 24, 39, 0.85), rgba(15, 23, 42, 0.75));
+        border-radius: 22px;
+        padding: 34px;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
+      }
+
+      .pill {
+        display: inline-block;
+        border: 1px solid #334155;
+        border-radius: 999px;
+        font-size: 0.83rem;
+        color: #bfdbfe;
+        padding: 6px 12px;
+        margin-bottom: 14px;
+        background: rgba(30, 58, 138, 0.18);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2rem, 5vw, 3rem);
+        line-height: 1.06;
+      }
+
+      .lead {
+        margin: 14px 0 0;
+        color: #cbd5e1;
+        max-width: 760px;
+        font-size: 1.05rem;
+      }
+
+      .cta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        padding: 11px 15px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        color: var(--text);
+        background: rgba(15, 23, 42, 0.72);
+        font-weight: 600;
+      }
+
+      .btn.primary {
+        background: linear-gradient(90deg, var(--accent), var(--accent3));
+        border: none;
+        color: white;
+      }
+
+      .stats {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+        gap: 12px;
+      }
+
+      .stat {
+        border: 1px solid var(--line);
+        background: var(--card);
+        border-radius: 14px;
+        padding: 12px;
+      }
+
+      .stat strong {
+        display: block;
+        font-size: 1.1rem;
+      }
+
+      .stat span {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      section {
+        margin-top: 22px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 14px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      }
+
       .card {
-        width: min(980px, 100%);
-        background: color-mix(in srgb, var(--card) 88%, black);
+        background: var(--card);
         border: 1px solid var(--line);
         border-radius: 16px;
-        padding: 28px;
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+        padding: 16px;
       }
-      h1 {
-        margin-top: 0;
-        margin-bottom: 8px;
-        font-size: clamp(1.8rem, 4vw, 2.4rem);
+
+      .card h3 {
+        margin: 0 0 8px;
+        font-size: 1rem;
       }
-      h2 {
-        margin-top: 24px;
-        margin-bottom: 10px;
-        font-size: 1.2rem;
-      }
-      p {
-        margin-top: 0;
+
+      .card p {
+        margin: 0;
         color: var(--muted);
+        line-height: 1.45;
       }
-      .links {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 12px;
-        margin: 20px 0;
-      }
-      a.tile {
-        display: block;
-        text-decoration: none;
-        color: var(--text);
+
+      .code {
+        background: #050b18;
         border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 14px;
-        background: #0b1220;
-        transition: transform 0.12s ease, border-color 0.12s ease;
+        border-radius: 16px;
+        padding: 16px;
+        overflow: auto;
       }
-      a.tile:hover {
-        transform: translateY(-2px);
-        border-color: var(--accent);
-      }
-      .small {
-        font-size: 0.9rem;
-        color: var(--muted);
-      }
-      code {
-        background: #0b1220;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        padding: 2px 7px;
-        color: #d1fae5;
-      }
+
       pre {
         margin: 0;
-        background: #0b1220;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 14px;
-        overflow: auto;
         color: #d1fae5;
         font-size: 0.92rem;
         line-height: 1.45;
       }
-      .grid-2 {
+
+      .compare {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
         gap: 14px;
       }
-      .panel {
+
+      .before {
+        border-left: 4px solid #f97316;
+      }
+
+      .after {
+        border-left: 4px solid var(--accent2);
+      }
+
+      .link-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+      }
+
+      .link-grid a {
+        text-decoration: none;
+        color: var(--text);
         border: 1px solid var(--line);
         border-radius: 12px;
         padding: 12px;
-        background: #0b1220;
+        background: rgba(15, 23, 42, 0.65);
       }
-      .panel h3 {
-        margin: 0 0 8px;
-        font-size: 1rem;
+
+      .small {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 0.86rem;
       }
-      .before h3 {
-        color: #fca5a5;
-      }
-      .after h3 {
-        color: #86efac;
-      }
-      .footer {
-        margin-top: 18px;
+
+      footer {
+        margin-top: 26px;
+        color: var(--muted);
         font-size: 0.9rem;
+        text-align: center;
       }
-      .dot {
-        color: var(--accent2);
+
+      code {
+        color: #d1fae5;
       }
     </style>
   </head>
   <body>
-    <main class="card">
-      <h1>Prerendererest <span class="dot">●</span></h1>
-      <p>Fast, flexible pre-rendering for React/Vue/SPA static output with Puppeteer.</p>
+    <main class="container">
+      <div class="hero">
+        <div class="pill">Prerendererest</div>
+        <h1>Make your SPA look fast, rank better, and convert harder.</h1>
+        <p class="lead">
+          Prerendererest turns client-rendered routes into static HTML snapshots so search engines,
+          social crawlers, and humans all get meaningful content immediately.
+        </p>
 
-      <div class="links">
-        <a class="tile" href="https://github.com/karpatic/prerendererest" target="_blank" rel="noreferrer">
-          <strong>GitHub Repository</strong>
-          <div class="small">Source, issues, and workflows</div>
-        </a>
-        <a class="tile" href="https://www.npmjs.com/package/prerendererest" target="_blank" rel="noreferrer">
-          <strong>npm Package</strong>
-          <div class="small">Install + package metadata</div>
-        </a>
-        <a class="tile" href="https://github.com/users/karpatic/packages?repo_name=prerendererest" target="_blank" rel="noreferrer">
-          <strong>GitHub Packages</strong>
-          <div class="small">Scoped mirror: @karpatic/prerendererest</div>
-        </a>
-        <a class="tile" href="https://unpkg.com/prerendererest/" target="_blank" rel="noreferrer">
-          <strong>unpkg CDN</strong>
-          <div class="small">Latest package files</div>
-        </a>
-        <a class="tile" href="https://cdn.jsdelivr.net/npm/prerendererest/" target="_blank" rel="noreferrer">
-          <strong>jsDelivr CDN</strong>
-          <div class="small">Global CDN endpoint</div>
-        </a>
+        <div class="cta">
+          <a class="btn primary" href="https://www.npmjs.com/package/prerendererest" target="_blank" rel="noreferrer">Install from npm</a>
+          <a class="btn" href="https://github.com/karpatic/prerendererest" target="_blank" rel="noreferrer">View GitHub</a>
+          <a class="btn" href="https://github.com/karpatic/prerendererest/pkgs/npm/prerendererest" target="_blank" rel="noreferrer">GitHub Packages</a>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <strong>SEO-ready HTML</strong>
+            <span>Route output bots can actually read</span>
+          </div>
+          <div class="stat">
+            <strong>One command</strong>
+            <span>Drop-in post-build workflow</span>
+          </div>
+          <div class="stat">
+            <strong>No SSR rewrite</strong>
+            <span>Keep your current SPA stack</span>
+          </div>
+        </div>
       </div>
 
-      <h2>Example script</h2>
-      <pre><code>{
+      <section class="grid">
+        <article class="card">
+          <h3>For founders & marketing teams</h3>
+          <p>Get indexable landing pages without rebuilding your frontend architecture.</p>
+        </article>
+        <article class="card">
+          <h3>For agencies</h3>
+          <p>Ship SEO baseline improvements quickly across many client projects.</p>
+        </article>
+        <article class="card">
+          <h3>For product teams</h3>
+          <p>Improve first paint + social previews while keeping your SPA behavior.</p>
+        </article>
+      </section>
+
+      <section class="card">
+        <h3 style="margin-top: 0; margin-bottom: 10px;">Quick start script</h3>
+        <div class="code">
+          <pre><code>{
   "scripts": {
     "build": "react-scripts build",
     "prerender": "prerendererest --source ./build --crawl --headless",
     "build:seo": "npm run build && npm run prerender"
   }
 }</code></pre>
+        </div>
+      </section>
 
-      <h2 style="margin-top: 18px;">Before vs After (demo)</h2>
-      <div class="grid-2">
-        <section class="panel before">
-          <h3>Before (SPA shell)</h3>
-          <pre><code>&lt;body&gt;
+      <section class="compare">
+        <article class="card before">
+          <h3 style="margin-top: 0;">Before (JS shell only)</h3>
+          <div class="code">
+            <pre><code>&lt;body&gt;
   &lt;div id="root"&gt;&lt;/div&gt;
   &lt;script src="/static/js/main.js"&gt;&lt;/script&gt;
 &lt;/body&gt;</code></pre>
-        </section>
+          </div>
+        </article>
 
-        <section class="panel after">
-          <h3>After (pre-rendered HTML)</h3>
-          <pre><code>&lt;body&gt;
+        <article class="card after">
+          <h3 style="margin-top: 0;">After (pre-rendered HTML)</h3>
+          <div class="code">
+            <pre><code>&lt;body&gt;
   &lt;div id="root"&gt;
     &lt;h1&gt;Pricing&lt;/h1&gt;
-    &lt;p&gt;Static HTML shipped for SEO + fast first paint.&lt;/p&gt;
+    &lt;p&gt;Static HTML ready for SEO and fast first paint.&lt;/p&gt;
   &lt;/div&gt;
   &lt;script src="/static/js/main.js" defer&gt;&lt;/script&gt;
 &lt;/body&gt;</code></pre>
-        </section>
-      </div>
+          </div>
+        </article>
+      </section>
 
-      <p class="footer">Quick start: <code>npm install prerendererest</code></p>
+      <section class="link-grid">
+        <a href="https://www.npmjs.com/package/prerendererest" target="_blank" rel="noreferrer">
+          <strong>npm package</strong>
+          <span class="small">Install + release history</span>
+        </a>
+        <a href="https://github.com/karpatic/prerendererest/pkgs/npm/prerendererest" target="_blank" rel="noreferrer">
+          <strong>GitHub Packages</strong>
+          <span class="small">Mirror package on GitHub</span>
+        </a>
+        <a href="https://unpkg.com/prerendererest/" target="_blank" rel="noreferrer">
+          <strong>unpkg CDN</strong>
+          <span class="small">Instant package browse</span>
+        </a>
+        <a href="https://cdn.jsdelivr.net/npm/prerendererest/" target="_blank" rel="noreferrer">
+          <strong>jsDelivr CDN</strong>
+          <span class="small">Global cached CDN</span>
+        </a>
+      </section>
+
+      <footer>
+        Build once. Pre-render. Ship confidence. · <code>npm install prerendererest</code>
+      </footer>
     </main>
   </body>
 </html>
